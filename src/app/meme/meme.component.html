@@ -1,0 +1,8 @@
+﻿
+<p>You're logged in with Angular 6!!</p>
+<ul>
+    <li *ngFor="let meme of memes">
+        {{meme.title}} 
+        - <a (click)="deleteMeme(meme.id)" class="text-danger">Delete</a>
+    </li>
+</ul>
