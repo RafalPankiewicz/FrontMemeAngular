@@ -19,6 +19,8 @@ import { RegisterComponent } from './register';
 import { MemeComponent } from './meme';
 import { Add_memeComponent } from './add_meme';
 import { UploadComponent } from './upload';
+import { MemeDetailsComponent } from './meme_details';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -34,7 +36,8 @@ import { UploadComponent } from './upload';
         RegisterComponent,
         MemeComponent,
         Add_memeComponent,
-        UploadComponent
+        UploadComponent,
+        MemeDetailsComponent
     ],
     providers: [
         AuthGuard,

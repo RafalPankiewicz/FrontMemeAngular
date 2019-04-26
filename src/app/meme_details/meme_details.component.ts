@@ -8,7 +8,7 @@ import { MemeService } from '../_services';
 @Component(
     {templateUrl: 'meme_details.component.html',
     styleUrls: ['meme_details.component.css'] })
-export class MemeComponent implements OnInit {
+export class MemeDetailsComponent implements OnInit {
     @Input() meme: Meme;
 
     constructor(
@@ -25,15 +25,13 @@ export class MemeComponent implements OnInit {
     getMeme(): void {
         const id = +this.route.snapshot.paramMap.get('id');
         this.memeService.getById(id).pipe(first()).subscribe(meme => this.meme = meme);
-      }
 
+
+      }
+    
     public createImgPath = (serverPath: string) => {
         return `${config.apiUrl}/api/files?filename=${serverPath}`;
       }
 
-    private loadAllMemes() {
-        this.memeService.getAll().pipe(first()).subscribe(memes => { 
-            this.memes = memes; 
-        });
-    }
+  
 }

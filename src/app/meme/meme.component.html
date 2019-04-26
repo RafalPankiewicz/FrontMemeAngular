@@ -3,7 +3,10 @@
 <ul>
     
     <tr *ngFor="let meme of memes">
-            <td>{{meme.title}}</td>
+        
+            <td><a routerLink="/memeDetail/{{meme.id}}">
+              {{meme.title}}
+            </a></td>
         <td><img [src]="createImgPath(meme.photoName)" alt="profile picture" ></td>     
     </tr>
 </ul>
