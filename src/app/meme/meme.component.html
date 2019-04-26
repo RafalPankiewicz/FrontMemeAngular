@@ -4,8 +4,6 @@
     
     <tr *ngFor="let meme of memes">
             <td>{{meme.title}}</td>
-        <td><img [src]="createImgPath(meme.photoName)" alt="profile picture" style="width:60px; height:60px;"></td>
-        
-        
-      </tr>
+        <td><img [src]="createImgPath(meme.photoName)" alt="profile picture" ></td>     
+    </tr>
 </ul>

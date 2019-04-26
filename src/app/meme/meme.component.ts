@@ -6,7 +6,8 @@ import { Meme} from '../_models';
 
 import { MemeService } from '../_services/';
 
-@Component({templateUrl: 'meme.component.html'})
+@Component({templateUrl: 'meme.component.html',
+            styleUrls: ['meme.component.css']})
 export class MemeComponent implements OnInit {
     memes: Meme[] = [];
 

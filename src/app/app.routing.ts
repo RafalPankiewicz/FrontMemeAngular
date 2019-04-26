@@ -8,7 +8,7 @@ import { AuthGuard } from './_guards';
 import { Add_memeComponent } from './add_meme';
 
 const appRoutes: Routes = [
-    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: '', component: MemeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'memes', component: MemeComponent },

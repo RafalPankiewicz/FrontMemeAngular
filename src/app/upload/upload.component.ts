@@ -3,8 +3,8 @@ import { HttpEventType, HttpClient } from '@angular/common/http';
  
 @Component({
   selector: 'app-upload',
-  templateUrl: './upload.component.html',
-//  styleUrls: ['./upload.component.css']
+  templateUrl: 'upload.component.html',
+  styleUrls: ['upload.component.css']
 })
 export class UploadComponent implements OnInit {
   public progress: number;
