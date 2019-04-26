@@ -4,5 +4,4 @@ export class Meme {
     title: string;
     photoName: string;
     rate: number;
-    cerationDate: number;
 }

@@ -24,6 +24,10 @@ export class MemeComponent implements OnInit {
         });
     }
 
+    public createImgPath = (serverPath: string) => {
+        return `${config.apiUrl}/api/files?filename=${serverPath}`;
+      }
+
     private loadAllMemes() {
         this.memeService.getAll().pipe(first()).subscribe(memes => { 
             this.memes = memes; 

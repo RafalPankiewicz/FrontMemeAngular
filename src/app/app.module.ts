@@ -17,7 +17,8 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { MemeComponent } from './meme';
-
+import { Add_memeComponent } from './add_meme';
+import { UploadComponent } from './upload';
 @NgModule({
     imports: [
         BrowserModule,
@@ -31,7 +32,9 @@ import { MemeComponent } from './meme';
         HomeComponent,
         LoginComponent,
         RegisterComponent,
-        MemeComponent
+        MemeComponent,
+        Add_memeComponent,
+        UploadComponent
     ],
     providers: [
         AuthGuard,

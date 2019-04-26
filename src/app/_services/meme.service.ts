@@ -14,6 +14,9 @@ export class MemeService {
         return this.http.get(`${config.apiUrl}/api/memes/` + id);
     }
 
+    addMeme(meme: Meme) {
+        return this.http.post(`${config.apiUrl}/api/memes/`, meme);
+    }
   
 
     update(meme: Meme) {

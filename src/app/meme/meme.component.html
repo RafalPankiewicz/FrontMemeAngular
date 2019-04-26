@@ -1,8 +1,11 @@
 ﻿
 <p>You're logged in with Angular 6!!</p>
 <ul>
-    <li *ngFor="let meme of memes">
-        {{meme.title}} 
-        - <a (click)="deleteMeme(meme.id)" class="text-danger">Delete</a>
-    </li>
+    
+    <tr *ngFor="let meme of memes">
+            <td>{{meme.title}}</td>
+        <td><img [src]="createImgPath(meme.photoName)" alt="profile picture" style="width:60px; height:60px;"></td>
+        
+        
+      </tr>
 </ul>
