@@ -14,7 +14,7 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'memes', component: MemeComponent },
     { path: 'add-meme', component: Add_memeComponent,canActivate: [AuthGuard]  },
-    { path: 'memeDetail/:id', component: MemeDetailsComponent },
+    { path: 'memeDetail/:id', component: MemeDetailsComponent,canActivate: [AuthGuard] },
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];

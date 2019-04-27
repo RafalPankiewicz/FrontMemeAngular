@@ -12,7 +12,7 @@ import { routing }        from './app.routing';
 import { AlertComponent } from './_directives';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { AlertService, AuthenticationService, UserService, MemeService } from './_services';
+import { AlertService, AuthenticationService, UserService, MemeService,CommentService } from './_services';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
@@ -20,6 +20,8 @@ import { MemeComponent } from './meme';
 import { Add_memeComponent } from './add_meme';
 import { UploadComponent } from './upload';
 import { MemeDetailsComponent } from './meme_details';
+import { CommentComponent } from './comment';
+
 
 @NgModule({
     imports: [
@@ -37,7 +39,9 @@ import { MemeDetailsComponent } from './meme_details';
         MemeComponent,
         Add_memeComponent,
         UploadComponent,
-        MemeDetailsComponent
+        MemeDetailsComponent,
+        CommentComponent
+
     ],
     providers: [
         AuthGuard,
@@ -45,6 +49,7 @@ import { MemeDetailsComponent } from './meme_details';
         AuthenticationService,
         UserService,
         MemeService,
+        CommentService,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 

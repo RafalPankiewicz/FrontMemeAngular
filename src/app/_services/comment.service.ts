@@ -1,29 +1,29 @@
 ﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Meme } from '../_models/meme';
+import { Comment } from '../_models/comment';
 
 @Injectable()
-export class MemeService {
+export class CommentService {
     constructor(private http: HttpClient) { }
 
-    getAll() {
-        return this.http.get<Meme[]>(`${config.apiUrl}/api/memes`);
+    getAllByMemeId(id: number) {
+        return this.http.get<Comment[]>(`${config.apiUrl}/api/comments/GetCommentsByMemeID/`+id);
     }
 
     getById(id: number) {
-        return this.http.get<Meme>(`${config.apiUrl}/api/memes/` + id);
+        return this.http.get<Comment>(`${config.apiUrl}/api/comments/` + id);
     }
 
-    addMeme(meme: Meme) {
-        return this.http.post(`${config.apiUrl}/api/memes/`, meme);
+    addComment(meme: Comment) {
+        return this.http.post(`${config.apiUrl}/api/comments/`, meme);
     }
   
 
-    update(meme: Meme) {
-        return this.http.put(`${config.apiUrl}/api/memes/` + meme.id, meme);
+    update(meme: Comment) {
+        return this.http.put(`${config.apiUrl}/api/comments/` + meme.id, meme);
     }
 
     delete(id: number) {
-        return this.http.delete(`${config.apiUrl}/api/memes/` + id);
+        return this.http.delete(`${config.apiUrl}/api/comments/` + id);
     }
 }

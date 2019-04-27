@@ -15,9 +15,8 @@ export class Add_memeComponent implements OnInit {
     submitted = false;
     currentUser:User;
     public progress: number;
-  public message: string;
-  	
-public response: {dbPath: ''};
+    public message: string;
+  	public response: {dbPath: ''};
 
     constructor(
         private formBuilder: FormBuilder,
