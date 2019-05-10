@@ -1,7 +1,10 @@
+import { User} from '../_models';
+
 export class Comment {
     id: number;
-    userCommId: number;
+    userCommID: number;
     memeId: number;
     contetnt: string;
-    cerationDate: Date;
+    creationDate: Date;
+    userComm: User; 
 }

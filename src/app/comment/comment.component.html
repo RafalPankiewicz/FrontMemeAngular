@@ -1,8 +1,9 @@
-﻿<h2>Register</h2>
+﻿<h2>Komentarz</h2>
 <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <label for="contetnt">Komentarz</label>
-        <input type="text" formControlName="contetnt" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contetnt.errors }" />
+        <label for="contetnt">Treść komentarza</label>
+        <textarea name="Text1" cols="40" rows="5" formControlName="contetnt" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contetnt.errors }" ></textarea>
+        <!--<input type="text" formControlName="contetnt" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contetnt.errors }" /> --> 
         <div *ngIf="submitted && f.contetnt.errors" class="invalid-feedback">
             <div *ngIf="f.contetnt.errors.required">Komentarz is required</div>
         </div>
@@ -14,11 +15,12 @@
 </form>
 
 <h1>Komentarze</h1>
-<ul>
-    
+<ul>  
     <tr *ngFor="let comment of comments">
-        <td>{{comment.cerationDate}}</td>
-        <td>{{comment.userCommId}}</td>  
-        <td>{{comment.contetnt}}</td>      
+        <td>{{comment.creationDate | date: 'dd-MM-yyyy, h:mm'}}</td>
+        <td>{{comment.userComm.username }}</td>       
+        <td>
+            <pre>{{comment.contetnt}}</pre>
+        </td>        
     </tr>
 </ul>

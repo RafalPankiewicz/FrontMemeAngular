@@ -1,12 +1,52 @@
 ﻿
 <p>You're logged in with Angular 6!!</p>
 <ul>
-    
+
     <tr *ngFor="let meme of memes">
         
+      <td>
+        {{meme.user.username}}
+      </td>
+      <td>{{meme.cerationDate | date: 'dd-MM-yyyy, h:mm'}} </td>
+
             <td><a routerLink="/memeDetail/{{meme.id}}">
               {{meme.title}}
             </a></td>
+            <td *ngIf="currentUser"><div *ngIf="currentUser.username == meme.user.username || currentUser.isAdmin "> <button  (click)="deleteMemeModal(meme.id)" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary">Usuń</button></div> </td>
+            <td *ngIf="currentUser"><div *ngIf="currentUser.username == meme.user.username  "> 
+              <button   class="btn btn-primary"><a routerLink="/memeEdit/{{meme.id}}">
+            Edytuj
+            </a></button></div> </td>
         <td><img [src]="createImgPath(meme.photoName)" alt="profile picture" ></td>     
-    </tr>
+      </tr>   
 </ul>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Czy na pewno chcesz usunąc mema?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <tr *ngIf="removeMeme">
+        
+          <td>{{ removeMeme.cerationDate | date: 'dd-MM-yyyy, h:mm'}} </td>
+    
+                <td>
+                  {{removeMeme.title}}
+                </td>
+                <td><img [src]="createImgPath(removeMeme.photoName)" alt="profile picture" ></td>     
+          </tr>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+        <button type="button" class="btn btn-danger" (click)="deleteMeme()" data-dismiss="modal" >Usuń</button>
+      </div>
+    </div>
+  </div>
+</div>

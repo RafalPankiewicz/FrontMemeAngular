@@ -1,3 +1,4 @@
+import { User} from '../_models';
 export class Meme {
     id: number;
     userId: number;
@@ -5,4 +6,5 @@ export class Meme {
     photoName: string;
     rate: number;
     cerationDate: Date;
+    user: User; 
 }

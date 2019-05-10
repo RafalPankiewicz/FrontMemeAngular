@@ -46,7 +46,8 @@ onSubmit() {
                     this.alertService.success('Comment add successful', true);
                     this.loading = false;
                     this.loadAllComments();
-                    this.commentForm.controls['photoName'].setValue('');
+                    this.commentForm.controls['contetnt'].setValue('');
+                    this.commentForm.controls['contetnt'].setErrors(null);
                 },
                 error => {
                     this.alertService.error(error);

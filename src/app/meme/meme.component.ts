@@ -4,26 +4,54 @@ import { User } from '../_models';
 import { UserService } from '../_services';
 import { Meme} from '../_models';
 
-import { MemeService } from '../_services/';
+import { AlertService, MemeService } from '../_services';
 
 @Component({templateUrl: 'meme.component.html',
             styleUrls: ['meme.component.css']})
 export class MemeComponent implements OnInit {
     memes: Meme[] = [];
+    currentUser:User;
+    deleteModal = false;
+    removeMeme: Meme;
+    constructor(
+        private memeService: MemeService,
+        private alertService: AlertService
+        ) {}
 
-    constructor(private memeService: MemeService) {
+    ngOnInit() {
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.loadAllMemes();
+
+    }
+
+    deleteMeme() {
+        
+        this.memeService.delete(this.removeMeme.id).pipe(first()).subscribe(
+        data => {
+            this.alertService.success('Delete meme successful', true);
+            this.loadAllMemes() 
+            this.deleteModal = false;
+        },
+        error => {
+            this.alertService.error(error);
+            this.deleteModal = false;
+        }
+        );
+    }
+ 
+    deleteMemeModal(id: number) {
+        this.deleteModal = true;
+        this.getMeme(id);
         
     }
 
-    ngOnInit() {
-        this.loadAllMemes();
-    }
+    getMeme(id: number): void {
+        
+        this.memeService.getById(id).pipe(first()).subscribe(meme => this.removeMeme = meme);
 
-    deleteMeme(id: number) {
-        this.memeService.delete(id).pipe(first()).subscribe(() => { 
-            this.loadAllMemes() 
-        });
-    }
+
+      }
+
 
     public createImgPath = (serverPath: string) => {
         return `${config.apiUrl}/api/files?filename=${serverPath}`;

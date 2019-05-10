@@ -7,6 +7,7 @@ import { MemeComponent } from './meme';
 import { AuthGuard } from './_guards';
 import { Add_memeComponent } from './add_meme';
 import { MemeDetailsComponent } from './meme_details';
+import { Edit_memeComponent } from './edit_meme';
 
 const appRoutes: Routes = [
     { path: '', component: MemeComponent },
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
     { path: 'memes', component: MemeComponent },
     { path: 'add-meme', component: Add_memeComponent,canActivate: [AuthGuard]  },
     { path: 'memeDetail/:id', component: MemeDetailsComponent,canActivate: [AuthGuard] },
+    { path: 'memeEdit/:id', component: Edit_memeComponent,canActivate: [AuthGuard] },
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];

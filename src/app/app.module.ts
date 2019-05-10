@@ -21,7 +21,7 @@ import { Add_memeComponent } from './add_meme';
 import { UploadComponent } from './upload';
 import { MemeDetailsComponent } from './meme_details';
 import { CommentComponent } from './comment';
-
+import { Edit_memeComponent } from './edit_meme';
 
 @NgModule({
     imports: [
@@ -40,7 +40,8 @@ import { CommentComponent } from './comment';
         Add_memeComponent,
         UploadComponent,
         MemeDetailsComponent,
-        CommentComponent
+        CommentComponent,
+        Edit_memeComponent
 
     ],
     providers: [
