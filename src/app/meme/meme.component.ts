@@ -41,7 +41,7 @@ export class MemeComponent implements OnInit {
  
     deleteMemeModal(id: number) {
         this.deleteModal = true;
-        this.getMeme(id);
+        this.removeMeme =this.memes.find(m => m.id == id);
         
     }
     UpRate(id: number) {
@@ -54,14 +54,6 @@ export class MemeComponent implements OnInit {
             this.memes.find(m => m.id == id).rate--;
         });
     }
-
-    getMeme(id: number): void {
-        
-        this.memeService.getById(id).pipe(first()).subscribe(meme => this.removeMeme = meme);
-
-
-      }
-
 
     public createImgPath = (serverPath: string) => {
         return `${config.apiUrl}/api/files?filename=${serverPath}`;

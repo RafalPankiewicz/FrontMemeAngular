@@ -17,6 +17,8 @@ export class CommentComponent implements OnInit {
     currentUser:User;
     loading = false;
     submitted = false;
+    deleteModal = false;
+    removeComment: Comment;
     comments: Comment[] = [];
 
     constructor( private formBuilder: FormBuilder,
@@ -68,13 +70,21 @@ onSubmit() {
         });
     }
 
-    deleteComment(id: number) {
-        this.commentService.delete(id).pipe(first()).subscribe(() => { 
-            this.loadAllComments() 
+    deleteCommentModal(id: number) {
+        this.deleteModal = true;
+        this.removeComment = this.comments.find(c => c.id == id);      
+    }
+    deleteComment() {  
+        this.commentService.delete(this.removeComment.id).pipe(first()).subscribe(data => {
+            this.alertService.success('Delete comment successful', true);
+            this.loadAllComments();
+            this.deleteModal = false;
+        },
+        error => {
+            this.alertService.error(error);
+            this.deleteModal = false;
         });
     }
-   
-
 
 
     private loadAllComments() {
