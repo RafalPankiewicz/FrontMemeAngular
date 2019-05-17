@@ -5,4 +5,5 @@
     firstName: string;
     lastName: string;
     isAdmin: boolean;
+    isBanned: boolean;
 }

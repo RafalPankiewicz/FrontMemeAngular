@@ -1,7 +1,7 @@
 import { User} from '../_models';
 export class Meme {
     id: number;
-    userId: number;
+    userID: number;
     title: string;
     photoName: string;
     rate: number;
