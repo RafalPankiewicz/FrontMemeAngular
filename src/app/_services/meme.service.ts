@@ -13,6 +13,12 @@ export class MemeService {
     getById(id: number) {
         return this.http.get<Meme>(`${config.apiUrl}/api/memes/` + id);
     }
+    upRate(id: number) {
+        return this.http.get(`${config.apiUrl}/api/memes/UpRate/` + id);
+    }
+    downRate(id: number) {
+        return this.http.get(`${config.apiUrl}/api/memes/DownRate/` + id);
+    }
 
     addMeme(meme: Meme) {
         return this.http.post(`${config.apiUrl}/api/memes/`, meme);

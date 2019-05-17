@@ -44,6 +44,16 @@ export class MemeComponent implements OnInit {
         this.getMeme(id);
         
     }
+    UpRate(id: number) {
+        this.memeService.upRate(id).pipe(first()).subscribe(() => { 
+            this.memes.find(m => m.id == id).rate++;
+        });
+    }
+    DownRate(id: number) {
+        this.memeService.downRate(id).pipe(first()).subscribe(() => { 
+            this.memes.find(m => m.id == id).rate--;
+        });
+    }
 
     getMeme(id: number): void {
         

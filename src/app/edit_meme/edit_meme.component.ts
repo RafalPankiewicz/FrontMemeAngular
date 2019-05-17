@@ -9,8 +9,8 @@ import { User,Meme } from '../_models';
 
 
 
-@Component({templateUrl: 'edit_meme.component.html'})
-export class Edit_memeComponent implements OnInit {
+@Component({templateUrl: 'edit_comment.component.html'})
+export class Edit_CommentComponent implements OnInit {
     @Input() meme: Meme;
     registerForm: FormGroup;
     loading = false;

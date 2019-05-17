@@ -68,11 +68,12 @@ onSubmit() {
         });
     }
 
-    deleteMeme(id: number) {
+    deleteComment(id: number) {
         this.commentService.delete(id).pipe(first()).subscribe(() => { 
             this.loadAllComments() 
         });
     }
+   
 
 
 

@@ -7,16 +7,23 @@
       <td>
         {{meme.user.username}}
       </td>
+      
+        
+      
+
+      <td>
+          <button  (click)="UpRate(meme.id)" class="btn btn-danger">+</button>
+        {{meme.rate}}
+        <button  (click)="DownRate(meme.id)" class="btn btn-secondary">-</button>
+      </td>
+
       <td>{{meme.cerationDate | date: 'dd-MM-yyyy, h:mm'}} </td>
 
             <td><a routerLink="/memeDetail/{{meme.id}}">
               {{meme.title}}
             </a></td>
             <td *ngIf="currentUser"><div *ngIf="currentUser.username == meme.user.username || currentUser.isAdmin "> <button  (click)="deleteMemeModal(meme.id)" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary">Usuń</button></div> </td>
-            <td *ngIf="currentUser"><div *ngIf="currentUser.username == meme.user.username  "> 
-              <button   class="btn btn-primary"><a routerLink="/memeEdit/{{meme.id}}">
-            Edytuj
-            </a></button></div> </td>
+           
         <td><img [src]="createImgPath(meme.photoName)" alt="profile picture" ></td>     
       </tr>   
 </ul>
