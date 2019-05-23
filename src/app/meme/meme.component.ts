@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { User } from '../_models';
-import { UserService } from '../_services';
+import { UserService, PagerService } from '../_services';
 import { Meme} from '../_models';
 
 import { AlertService, MemeService } from '../_services';
@@ -13,15 +13,21 @@ export class MemeComponent implements OnInit {
     currentUser:User;
     deleteModal = false;
     removeMeme: Meme;
+    
+    pager: any = {};
+
+    // paged items
+    pagedItems: any[];
     constructor(
         private memeService: MemeService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private pagerService: PagerService
         ) {}
 
     ngOnInit() {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.loadAllMemes();
-
+        
     }
 
     deleteMeme() {
@@ -29,7 +35,7 @@ export class MemeComponent implements OnInit {
         this.memeService.delete(this.removeMeme.id).pipe(first()).subscribe(
         data => {
             this.alertService.success('Delete meme successful', true);
-            this.loadAllMemes() 
+            this.loadAllMemes(); 
             this.deleteModal = false;
         },
         error => {
@@ -62,6 +68,14 @@ export class MemeComponent implements OnInit {
     private loadAllMemes() {
         this.memeService.getAll().pipe(first()).subscribe(memes => { 
             this.memes = memes; 
+            this.setPage(1);
         });
+    }
+    setPage(page: number) {
+        // get pager object from service
+        this.pager = this.pagerService.getPager(this.memes.length, page);
+
+        // get current page of items
+        this.pagedItems = this.memes.slice(this.pager.startIndex, this.pager.endIndex + 1);
     }
 }

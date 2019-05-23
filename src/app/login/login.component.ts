@@ -50,7 +50,11 @@ export class LoginComponent implements OnInit {
                 data => {
                     if(data)
                     {
+                        
                         this.router.navigate([this.returnUrl]);
+                        this.loading = false;
+                    }else
+                    {
                         this.loading = false;
                     }
                 },

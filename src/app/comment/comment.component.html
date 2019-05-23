@@ -1,60 +1,90 @@
-﻿<h2>Komentarz</h2>
-<form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-        <label for="contetnt">Treść komentarza</label>
-        <textarea name="Text1" cols="40" rows="5" formControlName="contetnt" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contetnt.errors }" ></textarea>
-        <!--<input type="text" formControlName="contetnt" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contetnt.errors }" /> --> 
-        <div *ngIf="submitted && f.contetnt.errors" class="invalid-feedback">
+﻿<div class="row">
+  <div class="col-md-8 offset-sm-2 ">
+    <div class="jumbotron">
+      <h2>Komentarz</h2>
+      <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="contetnt">Treść komentarza</label>
+          <textarea name="Text1" cols="40" rows="5" formControlName="contetnt" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.contetnt.errors }"></textarea>
+          <!--<input type="text" formControlName="contetnt" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contetnt.errors }" /> -->
+          <div *ngIf="submitted && f.contetnt.errors" class="invalid-feedback">
             <div *ngIf="f.contetnt.errors.required">Komentarz is required</div>
+          </div>
         </div>
+        <div class="form-group">
+          <button [disabled]="loading" class="btn btn-primary">Komentuj</button>
+          <img *ngIf="loading"
+            src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-        <button [disabled]="loading" class="btn btn-primary">Komentuj</button>
-        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-    </div>
-</form>
+  </div>
+</div>
 
-<h1>Komentarze</h1>
-<ul>  
-    <tr *ngFor="let comment of comments">
-        <td>{{comment.creationDate | date: 'dd-MM-yyyy, h:mm'}}</td>
-        <td>{{comment.userComm.username }}</td>       
-        <td>
-            <pre>{{comment.contetnt}}</pre>
-        </td>    
-        <td *ngIf="currentUser"><div *ngIf="currentUser.username == comment.userComm.username || currentUser.isAdmin "> <button  (click)="deleteCommentModal(comment.id)" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-danger">Usuń</button></div> </td> 
-        <td *ngIf="currentUser"><div *ngIf="currentUser.username == comment.userCommID  "> 
-            <button   class="btn btn-primary"><a routerLink="/memeComment/{{comment.id}}">
-          Edytuj
-          </a></button></div> </td>   
-    </tr>
-</ul>
+<div class="row">
+  <div class="col-sm-8 offset-sm-2">
+    <div class="jumbotron">
+      <h1>Komentarze</h1>
+      <ul>
+        <table class="table table-striped">
+          <thead>
+            <th>Data dodania</th>
+            <th>Dodane przez</th>
+            <th>Treść:</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let comment of comments">
+              <td>{{comment.creationDate | date: 'dd-MM-yyyy, hh:mm'}}</td>
+              <td>{{comment.userComm.username }}</td>
+              <td>
+                <pre>{{comment.contetnt}}</pre>
+              </td>
+              <td *ngIf="currentUser">
+                <div *ngIf="currentUser.username == comment.userComm.username || currentUser.isAdmin "> <button
+                    (click)="deleteCommentModal(comment.id)" data-toggle="modal" data-target="#exampleModalCenter"
+                    class="btn btn-danger">Usuń</button></div>
+              </td>
+              <td *ngIf="currentUser">
+                <div *ngIf="currentUser.username == comment.userCommID  ">
+                  <button class="btn btn-primary" routerLink="/memeComment/{{comment.id}}">
+                    Edytuj
+                  </button></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ul>
+    </div>
+  </div>
+</div>
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Czy na pewno chcesz usunąc komentarz?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <tr *ngIf="removeComment">
-          
-            <td>{{removeComment.creationDate | date: 'dd-MM-yyyy, h:mm'}}</td>
-            <td>Nazwa użytkownika{{removeComment.userComm.username }}</td>       
-            <td>
-                <pre>{{removeComment.contetnt}}</pre>
-            </td>     
-          </tr>  
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
-          <button type="button" class="btn btn-danger" (click)="deleteComment()" data-dismiss="modal" >Usuń</button>
-        </div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Czy na pewno chcesz usunąc komentarz?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <tr *ngIf="removeComment">
+
+          <td>{{removeComment.creationDate | date: 'dd-MM-yyyy, h:mm'}}</td>
+          <td>Nazwa użytkownika{{removeComment.userComm.username }}</td>
+          <td>
+            <pre>{{removeComment.contetnt}}</pre>
+          </td>
+        </tr>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+        <button type="button" class="btn btn-danger" (click)="deleteComment()" data-dismiss="modal">Usuń</button>
       </div>
     </div>
   </div>
+</div>
