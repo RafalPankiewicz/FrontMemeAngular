@@ -1,0 +1,1 @@
+﻿export * from './add_meme.component';

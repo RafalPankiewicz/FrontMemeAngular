@@ -1,0 +1,92 @@
+﻿<div class="row" *ngFor="let meme of pagedItems">
+  <div class="col-md-12">
+    <div class="jumbotron">
+
+      <div class="card text-center">
+
+        <div class="card-body">
+          <div class="card bg-dark text-white">
+            <img class="card-img" [src]="createImgPath(meme.photoName)" alt="Card image">
+            <div class="card-img-overlay">
+              <h5 class="card-title"><a routerLink="/memeDetail/{{meme.id}}">
+                  {{meme.title}}</a></h5>
+            </div>
+          </div>
+          <br>
+          <div class="card bg-dark text-white">
+            Oceń
+            <button (click)="UpRate(meme.id)" class="btn btn-danger">+</button>
+            {{meme.rate}}
+            <button (click)="DownRate(meme.id)" class="btn btn-secondary">-</button>
+          </div>
+
+        </div>
+        <div *ngIf="currentUser" class="card-footer text-muted">
+          <td>
+            <div *ngIf="currentUser.username == meme.user.username || currentUser.isAdmin "> <button
+                (click)="deleteMemeModal(meme.id)" data-toggle="modal" data-target="#exampleModalCenter"
+                class="btn btn-danger">Usuń mema</button></div>
+          </td>
+        </div>
+        <div class="card-footer text-muted">
+          Dodano {{meme.cerationDate | date: 'dd-MM-yyyy, h:mm'}} Przez użytkownika: {{meme.user.username}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Czy na pewno chcesz usunąc mema?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="removeMeme">
+          <td>O tytule {{removeMeme.title}}</td>
+          <td>Uzytkownika: {{removeMeme.user.username}}</td>
+          <td>Dodanego: {{ removeMeme.cerationDate | date: 'dd-MM-yyyy, h:mm'}} </td>
+          <img [src]="createImgPath(removeMeme.photoName)" class="img-thumbnail" alt="profile picture">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+        <button type="button" class="btn btn-danger" (click)="deleteMeme()" data-dismiss="modal">Usuń</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngFor="let item of pagedItems">{{item.name}}</div>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="jumbotron">
+      <!-- pager -->
+      <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+        <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item">
+          <a (click)="setPage(1) " class="page-link">First</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item">
+          <a (click)="setPage(pager.currentPage - 1) " class="page-link" >Previous</a>
+        </li>
+        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="page-item">
+          <a (click)="setPage(page)" class="page-link">{{page}}</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item">
+          <a (click)="setPage(pager.currentPage + 1)" class="page-link">Next</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}"  class="page-item">
+          <a (click)="setPage(pager.totalPages)" class="page-link">Last</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

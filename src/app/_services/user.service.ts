@@ -12,7 +12,7 @@ export class UserService {
     }
 
     getById(id: number) {
-        return this.http.get(`${config.apiUrl}/users/` + id);
+        return this.http.get<any>(`${config.apiUrl}/users/` + id);
     }
 
     register(user: User) {
@@ -25,5 +25,9 @@ export class UserService {
 
     delete(id: number) {
         return this.http.delete(`${config.apiUrl}/users/` + id);
+    }
+   
+    banUserById(id: number) {
+        return this.http.get(`${config.apiUrl}/users/BanUserById/` + id);
     }
 }
