@@ -8,15 +8,15 @@ import { User } from '../_models';
 
 
 
-@Component({templateUrl: 'add_meme.component.html'})
+@Component({ templateUrl: 'add_meme.component.html' })
 export class Add_memeComponent implements OnInit {
     registerForm: FormGroup;
     loading = false;
     submitted = false;
-    currentUser:User;
+    currentUser: User;
     public progress: number;
     public message: string;
-  	public response: {dbPath: ''};
+    public response: { dbPath: '' };
 
     constructor(
         private formBuilder: FormBuilder,
@@ -31,7 +31,7 @@ export class Add_memeComponent implements OnInit {
             photoName: ['', Validators.required],
             userId: [this.currentUser.id]
         });
-        
+
     }
 
     // convenience getter for easy access to form fields
@@ -39,10 +39,7 @@ export class Add_memeComponent implements OnInit {
 
     public uploadFinished = (event) => {
         this.response = event;
-      }
-  
-
-  
+    }
 
     onSubmit() {
         this.submitted = true;
@@ -54,9 +51,6 @@ export class Add_memeComponent implements OnInit {
             return;
         }
 
-       
-        
-    
         this.loading = true;
         this.memeService.addMeme(this.registerForm.value)
             .pipe(first())

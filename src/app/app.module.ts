@@ -12,7 +12,6 @@ import { AlertComponent } from './_directives';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AlertService, AuthenticationService, UserService, MemeService,CommentService, PagerService } from './_services';
-import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { MemeComponent } from './meme';
@@ -35,7 +34,6 @@ import { RouterModule } from '@angular/router';
     declarations: [
         AppComponent,
         AlertComponent,
-        HomeComponent,
         LoginComponent,
         RegisterComponent,
         MemeComponent,

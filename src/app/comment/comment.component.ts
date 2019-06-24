@@ -59,7 +59,6 @@ onSubmit() {
                 
     }
 
-
     ngOnInit() {
         this.loadAllComments();
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -85,7 +84,6 @@ onSubmit() {
             this.deleteModal = false;
         });
     }
-
 
     private loadAllComments() {
         this.commentService.getAllByMemeId(this.memeId).pipe(first()).subscribe(comments => { 

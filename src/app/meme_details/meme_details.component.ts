@@ -26,8 +26,7 @@ export class MemeDetailsComponent implements OnInit {
 
     ngOnInit() {
         this.getMeme();
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));  
     }
 
     getMeme(): void {
@@ -71,6 +70,4 @@ export class MemeDetailsComponent implements OnInit {
                 this.alertService.error(error);
             });
       }
-    
-  
 }

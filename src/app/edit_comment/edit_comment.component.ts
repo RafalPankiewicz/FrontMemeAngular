@@ -40,7 +40,6 @@ onSubmit() {
 
         this.loading = true;
         
-
         this.commentService.update(this.commentForm.value)
             .pipe(first())
             .subscribe(
@@ -53,16 +52,14 @@ onSubmit() {
                 error => {
                     this.alertService.error(error);
                     this.loading = false;
-                   
-                });
-                
+                }
+            );           
     }
 
 
     ngOnInit() {
         this.getComment();
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));   
    }
 
    getComment(): void {
@@ -75,11 +72,5 @@ onSubmit() {
             memeID:[this.comment.memeID]
         });        
     });
-  }
-
-
-
- 
-
-  
+  } 
 }

@@ -23,9 +23,8 @@ export class NavComponent implements OnInit {
         private alertService: AlertService) {
             this.authenticationService.getEmitter().subscribe((user) => {
                this.currentUser = user;
-              });
-       
-        }
+              });     
+    }
 
     ngOnInit() {
         if(!this.currentUser)
@@ -38,9 +37,9 @@ export class NavComponent implements OnInit {
         this.authenticationService.logout();
         this.router.navigate([""]);
     }
+
     login(){  
         this.router.navigateByUrl('/login');
-
     }
 
    
